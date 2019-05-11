@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+}
+
+.container {
+  background: #ffffff;
+  height: 100vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.main-button {
+  border: #000000 1px solid;
+  padding: 1em;
+  text-transform: uppercase;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+.div-to-center {
+  border-radius: 5px;
+  padding: 1em 2em;
+}
