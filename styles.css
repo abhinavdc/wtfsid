@@ -12,10 +12,10 @@ body {
   align-self: center;
   justify-self: center;
   text-align: center;
-  padding: 20px 0;
 }
 
 .main {
+  padding-top: 40px;
   margin-bottom: 60px;
   font-size: 30px;
   font-weight: bold;
@@ -42,3 +42,4 @@ body {
 .time > .unit {
   margin: 0 5px 0 5px;
 }
+ 
