@@ -8,74 +8,37 @@
     <title>Document</title>
   </head>
   <body>
+    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
     <script>
       window.addEventListener(
         'load',
         function() {
-          var touchsurface = document.getElementById('touchsurface'),
-            startX,
-            startY,
-            dist,
-            threshold = 0, //required min distance traveled to be considered swipe
-            allowedTime = 200, // maximum time allowed to travel that distance
-            elapsedTime,
-            startTime;
+          var currentValue = 5;
+          const DOWN = 16,
+            UP = 8;
+          
+          const touchSurface = document.getElementById('touchsurface');
+          const mc = new Hammer(touchSurface);
+          mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
 
-          function handleSwipe(swipeDirection) {
-            const value = +document.getElementsByClassName('quantity')[0]
-              .innerHTML;
-            if (swipeDirection < 0) {
-              const newValue = value + Math.round(swipeDirection / 20);
-              document.getElementsByClassName('quantity')[0].innerHTML =
-                newValue < 0 ? 0 : newValue;
-            } else {
-              const newValue = value + Math.round(swipeDirection / 20);
-              document.getElementsByClassName('quantity')[0].innerHTML =
-                newValue < 0 ? 0 : newValue;    
+          const quantity = document.getElementsByClassName('quantity')[0];
+          quantity.innerHTML = currentValue;
+
+          mc.on('panup pandown', function(ev) {
+            const step = Math.abs(ev.distance * ev.velocityY) / 100;
+            if (ev.direction === UP && currentValue > 0) {
+              currentValue = currentValue - step < 0 ? 0 : currentValue - step;
+            } else if (ev.direction === DOWN && currentValue <= 60) {
+              currentValue = quantity.innerHTML =
+                currentValue + step > 60 ? 60 : currentValue + step;
             }
-          }
-
-          touchsurface.addEventListener(
-            'touchstart',
-            function(e) {
-              var touchobj = e.changedTouches[0];
-              dist = 0;
-            //   startX = touchobj.pageX;
-              startY = touchobj.pageY;
-            //   startTime = new Date().getTime(); // record time when finger first makes contact with surface
-              e.preventDefault();
-            },
-            false
-          );
-
-          touchsurface.addEventListener(
-            'touchmove',
-            function(e) {
-              var touchobj = e.changedTouches[0];
-              if (touchobj.target.className === 'content' || touchobj.target.className === 'grid-container') {
-                // elapsedTime = new Date().getTime() - startTime;
-                var swipeUpDown = Math.abs(touchobj.pageY - startY) >= 0;
-                const decrement = touchobj.pageY - startY;
-                if (swipeUpDown) {
-                  handleSwipe(touchobj.pageY - startY);
-                }
-              }
-              e.preventDefault(); // prevent scrolling when inside DIV
-            },
-            false
-          );
-
-          touchsurface.addEventListener(
-            'touchend',
-            function(e) {
-              e.preventDefault();
-            },
-            false
-          );
+            quantity.innerHTML = parseInt(currentValue);
+          });
         },
         false
-      ); // end window.onload
+      );
     </script>
+
     <div class="grid-container" id="touchsurface">
       <div class="content">
         <div class="main">
@@ -88,7 +51,9 @@
           </div>
           <div>to spare</div>
         </div>
-        <a class="button">What the Fuck Should I do ?</a>
+        <a onclick="buttonClick()" class="button"
+          >What the Fuck Should I do ?</a
+        >
       </div>
     </div>
   </body>
