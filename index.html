@@ -16,13 +16,13 @@
           var currentValue = 5;
           const DOWN = 16,
             UP = 8;
-          
+
           const touchSurface = document.getElementById('touchsurface');
           const mc = new Hammer(touchSurface);
           mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
 
           const quantity = document.getElementsByClassName('quantity')[0];
-          quantity.innerHTML = currentValue;
+          quantity.innerHTML = '0' + currentValue;
 
           mc.on('panup pandown', function(ev) {
             const step = Math.abs(ev.distance * ev.velocityY) / 100;
@@ -32,7 +32,7 @@
               currentValue = quantity.innerHTML =
                 currentValue + step > 60 ? 60 : currentValue + step;
             }
-            quantity.innerHTML = parseInt(currentValue);
+            quantity.innerHTML = parseInt(currentValue) < 10 ? '0' + parseInt(currentValue) : parseInt(currentValue);
           });
         },
         false
@@ -41,6 +41,11 @@
 
     <div class="grid-container" id="touchsurface">
       <div class="content">
+        <div class="arrow-holder2">
+          <div id="arrow3" class="arrow"></div>
+          <div id="arrow2" class="arrow"></div>
+          <div id="arrow1" class="arrow"></div>
+        </div>
         <div class="main">
           <div>I've got</div>
           <div class="time">
@@ -50,6 +55,11 @@
             <div class="unit">minutes</div>
           </div>
           <div>to spare</div>
+        </div>
+        <div class="arrow-holder">
+          <div id="arrow3" class="arrow"></div>
+          <div id="arrow2" class="arrow"></div>
+          <div id="arrow1" class="arrow"></div>
         </div>
         <a onclick="buttonClick()" class="button"
           >What the Fuck Should I do ?</a

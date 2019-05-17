@@ -16,7 +16,7 @@ body {
 
 .main {
   margin-bottom: 60px;
-  font-size: 30px;
+  font-size: 1.5em;
   font-weight: bold;
   display: flex;
 }
@@ -25,20 +25,66 @@ body {
   border: #000000 2px solid;
   padding: 1em;
   text-transform: uppercase;
-  font-size: 15px;
+  font-size: 1em;
 }
 
 .time {
   display: flex;
-  margin: 0 10px 0 10px;
+  margin: 0px 20px 0 10px;
 }
 
 .time > .quantity {
+  position: absolute;
   color: red;
-  margin: 0 5px 0 5px;
+  /* margin: 0 5px 0 5px; */
 }
 
 .time > .unit {
-  margin: 0 5px 0 5px;
+  position: relative;
+  left: 15px;
+  margin: 0px 5px 0 18px;
 }
+
+.arrow-holder {
+  position: relative;
+  transform: rotate(270deg);
+  top: -50px;
+  right: -78px;
+  width: 30px;
+}
+
+.arrow-holder2 {
+  position: relative;
+  transform: rotate(90deg);
+  top: -12px;
+  right: -85px;
+  width: 30px;
+}
+
+.arrow {
+  opacity: 0;
+  border: solid black;
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(135deg);
+}
+
+@-webkit-keyframes flash {
+  0%   { opacity: 1; }
+  25% { opacity: 0; }
+}
+
+
+#arrow1 {
+  -webkit-animation: flash 6s infinite;
+}
+#arrow2 {
+  -webkit-animation: flash 6s infinite .5s;
+}
+
+#arrow3 {
+  -webkit-animation: flash 6s infinite 1s;
+}
+
  
