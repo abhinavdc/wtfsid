@@ -5,6 +5,8 @@ body {
 .grid-container {
   height: 100vh;
   display: grid;
+  grid-template-rows: 20px 80% 20% 20px;
+  grid-template-columns: 20px auto 20px;
 }
 
 .content {
@@ -12,20 +14,36 @@ body {
   align-self: center;
   justify-self: center;
   text-align: center;
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+
+.content > img {
+  height: 300px;
 }
 
 .main {
-  margin-bottom: 60px;
   font-size: 1.5em;
   font-weight: bold;
   display: flex;
 }
 
+.button-group {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  grid-column-start: 2;
+  grid-row-start: 3;
+  align-self: flex-start;
+  justify-self: center;
+  text-align: center;
+}
+
 .button {
-  border: #000000 2px solid;
+  border: #000000 0.2em solid;
   padding: 1em;
   text-transform: uppercase;
   font-size: 1em;
+  color: #000000;
+  text-decoration: none;
 }
 
 .time {
@@ -54,12 +72,10 @@ body {
 
 .arrow-holder.bottom {
   transform: rotate(270deg);
-  top: -50px;
 }
 
 .arrow-holder.top {
   transform: rotate(90deg);
-  top: -12px;
 }
 
 .arrow {
