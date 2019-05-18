@@ -35,11 +35,18 @@ body {
 
 .button-group {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  grid-column-start: 2;
-  grid-row-start: 3;
-  align-self: flex-start;
   justify-self: center;
   text-align: center;
+  grid-column-start: 2;
+  grid-row-start: 3;
+}
+
+.button-group.primary {
+  align-self: flex-start;
+}
+
+.button-group.secondary {
+  align-self: center;
 }
 
 .button {
@@ -49,6 +56,11 @@ body {
   font-size: 1em;
   color: #000000;
   text-decoration: none;
+}
+
+.button.button-link {
+  font-size: 0.80em;
+  border: none;
 }
 
 .time {
@@ -107,11 +119,11 @@ body {
 }
 
 #arrow1 {
-  -webkit-animation: flash 6s infinite;
+  -webkit-animation: flash 6s infinite 3;
 }
 #arrow2 {
-  -webkit-animation: flash 6s infinite 0.5s;
+  -webkit-animation: flash 6s infinite 3.5s;
 }
 #arrow3 {
-  -webkit-animation: flash 6s infinite 1s;
+  -webkit-animation: flash 6s infinite 4s;
 }
