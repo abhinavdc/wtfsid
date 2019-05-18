@@ -18,8 +18,13 @@ body {
   grid-row-start: 2;
 }
 
-.content > img {
-  height: 300px;
+.data {
+  width: 300px;
+}
+
+.data > img {
+  max-width: 100%;
+  height: auto;
 }
 
 .main {
