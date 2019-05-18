@@ -25,18 +25,29 @@
           quantity.innerHTML = '0' + currentValue;
 
           mc.on('panup pandown', function(ev) {
+            stopArrowAnimation();
             const step = Math.abs(ev.distance * ev.velocityY) / 100;
-            if (ev.direction === UP && currentValue > 0) {
+            if (ev.direction === DOWN && currentValue > 0) {
               currentValue = currentValue - step < 0 ? 0 : currentValue - step;
-            } else if (ev.direction === DOWN && currentValue <= 60) {
+            } else if (ev.direction === UP && currentValue <= 60) {
               currentValue = quantity.innerHTML =
                 currentValue + step > 60 ? 60 : currentValue + step;
             }
-            quantity.innerHTML = parseInt(currentValue) < 10 ? '0' + parseInt(currentValue) : parseInt(currentValue);
+            quantity.innerHTML =
+              parseInt(currentValue) < 10
+                ? '0' + parseInt(currentValue)
+                : parseInt(currentValue);
           });
         },
         false
       );
+
+      function stopArrowAnimation() {
+        const arrows = document.getElementsByClassName('arrow');
+        for (i = 0; i < arrows.length; i++) {
+          arrows[i].classList.add('stop-animation');
+        }
+      }
     </script>
 
     <div class="grid-container" id="touchsurface">

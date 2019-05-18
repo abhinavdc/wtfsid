@@ -71,20 +71,25 @@ body {
 }
 
 @-webkit-keyframes flash {
-  0%   { opacity: 1; }
-  25% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
 }
 
+.stop-animation {
+  animation-iteration-count: 1 !important;
+  -webkit-animation-iteration-count: 1 !important;
+}
 
 #arrow1 {
   -webkit-animation: flash 6s infinite;
 }
 #arrow2 {
-  -webkit-animation: flash 6s infinite .5s;
+  -webkit-animation: flash 6s infinite 0.5s;
 }
-
 #arrow3 {
   -webkit-animation: flash 6s infinite 1s;
 }
-
- 
