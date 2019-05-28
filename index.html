@@ -42,6 +42,16 @@
         false
       );
 
+      const fetchData = async () => {
+        const time = +document.getElementsByClassName('quantity')[0].innerHTML;
+        const response = await fetch(
+          'http://localhost:3000/posts?duration=' + time
+        );
+        const data = await response.json();
+        localStorage.setItem('data', JSON.stringify(data));
+        window.location.href = "results.html";
+      };
+
       function stopArrowAnimation() {
         const arrows = document.getElementsByClassName('arrow');
         for (i = 0; i < arrows.length; i++) {
@@ -72,9 +82,7 @@
         </div>
       </div>
       <div class="button-group">
-        <a onclick="buttonClick()" class="button" href="results.html"
-          >What the Fuck Should I do ?</a
-        >
+        <a onclick="fetchData()" class="button">What the Fuck Should I do ?</a>
       </div>
     </div>
   </body>
