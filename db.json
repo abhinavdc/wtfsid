@@ -1,0 +1,6 @@
+{
+    "posts": [
+      { "id": 1, "title": "Movie Time", "description": "Lets watch Lucifer", "type": "movie", "duration": 5 },
+      { "id": 2, "title": "Video Time", "description": "Toto Africa - Live", "type": "video", "duration": 10 }
+    ]
+  }
