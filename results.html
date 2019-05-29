@@ -9,14 +9,37 @@
   </head>
   <body>
     <script>
-      function nextResult() {
+      var currentResultIndex = 0;
+      window.addEventListener(
+        'load',
+        function() {
+          results = fetchResults();
+          loadResult(results[currentResultIndex]);
+        },
+        false
+      );
+
+      function fetchResults() {
+        return JSON.parse(localStorage.getItem('data'));
+      }
+
+      function getNextResult() {
+        currentResultIndex += 1;
+        loadResult(results[currentResultIndex])
+      }
+
+      function getPrevResult() {
+        currentResultIndex -= 1;
+        loadResult(results[currentResultIndex])
+      }
+
+      function loadResult(result) {
         const title = document.getElementsByClassName('title')[0];
-        title.innerHTML = 'Video Time';
+        title.innerHTML = result.title;
         const data = document.getElementsByClassName('data')[0];
-        data.innerHTML =
-          '<iframe width="100%" height="315" src="https://www.youtube.com/embed/4wh9dPmjAnU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        data.innerHTML = result.content;
         const description = document.getElementsByClassName('description')[0];
-        description.innerHTML = 'Watch Toto - Africa Live';
+        description.innerHTML = result.description;
       }
     </script>
     <div class="grid-container">
@@ -36,7 +59,7 @@
         >
       </div>
       <div class="button-group secondary">
-          <a class="button button-link" href="index.html">Go back</a>
+        <a class="button button-link" href="index.html">Go back</a>
       </div>
     </div>
   </body>
