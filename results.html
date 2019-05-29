@@ -14,7 +14,9 @@
         'load',
         function() {
           results = fetchResults();
-          loadResult(results[currentResultIndex]);
+          results.length
+            ? loadResult(results[currentResultIndex])
+            : loadEmptyResult();
         },
         false
       );
@@ -25,12 +27,16 @@
 
       function getNextResult() {
         currentResultIndex += 1;
-        loadResult(results[currentResultIndex])
+        currentResultIndex < results.length
+          ? loadResult(results[currentResultIndex])
+          : loadEmptyResult();
       }
 
       function getPrevResult() {
         currentResultIndex -= 1;
-        loadResult(results[currentResultIndex])
+        currentResultIndex > -1
+          ? loadResult(results[currentResultIndex])
+          : loadEmptyResult();
       }
 
       function loadResult(result) {
@@ -41,20 +47,29 @@
         const description = document.getElementsByClassName('description')[0];
         description.innerHTML = result.description;
       }
+
+      function loadEmptyResult() {
+        const title = document.getElementsByClassName('title')[0];
+        title.innerHTML = 'Sorry';
+        const data = document.getElementsByClassName('data')[0];
+        data.innerHTML = '';
+        const description = document.getElementsByClassName('description')[0];
+        description.innerHTML = 'No Result';
+      }
+
+      function startTimer() {
+        window.location = "timer.html?time=" + results[currentResultIndex].duration;  
+      }
     </script>
     <div class="grid-container">
       <div class="content">
-        <h1 class="title">Movie Time</h1>
-        <div class="data">
-          <img
-            src="https://scontent.fcok1-1.fna.fbcdn.net/v/t1.0-1/37379673_837454313130341_7629980182681485312_n.jpg?_nc_cat=101&_nc_ht=scontent.fcok1-1.fna&oh=5372e7a6261e66e8596ab365aae3b4f0&oe=5D58F010"
-          />
-        </div>
-        <p class="description">Let's watch Lucifer</p>
+        <h1 class="title"></h1>
+        <div class="data"></div>
+        <p class="description"></p>
       </div>
       <div class="button-group primary">
-        <a onclick="nextResult()" class="button">No, Not this</a>
-        <a onclick="buttonClick()" class="button" href="timer.html"
+        <a onclick="getNextResult()" class="button">No, Not this</a>
+        <a onclick="startTimer()" class="button"
           >Let's Do It</a
         >
       </div>
