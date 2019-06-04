@@ -4,6 +4,7 @@ wtfsid ( What the Fuck should I do ) - An app that tells you how to kill your ti
 
 
 ## TODO
-Convert to Single Page App
-Host backend server
-Form to add new entries to database
+
+* Convert to Single Page App
+* Host backend server
+* Form to add new entries to database
